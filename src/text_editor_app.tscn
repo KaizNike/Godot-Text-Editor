@@ -47,13 +47,17 @@ text = "New"
 layout_mode = 2
 text = "Save"
 
+[node name="ButtonDownload" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Download"
+
 [node name="ButtonOpen" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Open"
 
 [node name="LabelPath" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "X"
+text = "path"
 vertical_alignment = 1
 
 [node name="TextEdit" type="TextEdit" parent="UI/VBoxContainer"]
@@ -61,12 +65,18 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="FileDialogSave" type="FileDialog" parent="UI"]
+access = 2
+
+[node name="FileDialogDownload" type="FileDialog" parent="UI"]
+size = Vector2i(312, 157)
+access = 2
 
 [node name="FileDialogOpen" type="FileDialog" parent="UI"]
 title = "Open a File"
 size = Vector2i(312, 157)
 ok_button_text = "Open"
 file_mode = 0
+access = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -81,6 +91,8 @@ texture = SubResource("GradientTexture1D_b7jc8")
 
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonNew" to="UI" method="_on_button_new_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonSave" to="UI" method="_on_button_save_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonDownload" to="UI" method="_on_button_download_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonOpen" to="UI" method="_on_button_open_pressed"]
 [connection signal="file_selected" from="UI/FileDialogSave" to="UI" method="_on_file_dialog_save_file_selected"]
+[connection signal="file_selected" from="UI/FileDialogDownload" to="UI" method="_on_file_dialog_download_file_selected"]
 [connection signal="file_selected" from="UI/FileDialogOpen" to="UI" method="_on_file_dialog_open_file_selected"]
