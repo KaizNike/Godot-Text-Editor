@@ -1,16 +1,29 @@
-[gd_scene format=3 uid="uid://b6nm088o1v7p0"]
+[gd_scene load_steps=5 format=3 uid="uid://b6nm088o1v7p0"]
+
+[ext_resource type="Script" path="res://src/UI.gd" id="1_y71lo"]
+
+[sub_resource type="Theme" id="Theme_fsk1t"]
+TextEdit/colors/background_color = Color(1, 0, 0.721569, 0.313726)
+
+[sub_resource type="Gradient" id="Gradient_1567g"]
+colors = PackedColorArray(0, 0, 0, 1, 0.905849, 0.709081, 0.231607, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b7jc8"]
+gradient = SubResource("Gradient_1567g")
 
 [node name="TextEditorApp" type="Node"]
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_fsk1t")
+script = ExtResource("1_y71lo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,29 +31,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="LabelName" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Nike Editor"
+vertical_alignment = 1
+
+[node name="ButtonNew" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "New"
 
-[node name="Button2" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="ButtonSave" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Save"
 
-[node name="Button3" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="ButtonOpen" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Open"
 
-[node name="TextEdit" type="TextEdit" parent="Control/VBoxContainer"]
+[node name="LabelPath" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "X"
+vertical_alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="UI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FileDialogSave" type="FileDialog" parent="Control"]
+[node name="FileDialogSave" type="FileDialog" parent="UI"]
 
-[node name="FileDialogOpen" type="FileDialog" parent="Control"]
+[node name="FileDialogOpen" type="FileDialog" parent="UI"]
 title = "Open a File"
 size = Vector2i(312, 157)
 ok_button_text = "Open"
 file_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_b7jc8")
+
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonNew" to="UI" method="_on_button_new_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonSave" to="UI" method="_on_button_save_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonOpen" to="UI" method="_on_button_open_pressed"]
+[connection signal="file_selected" from="UI/FileDialogSave" to="UI" method="_on_file_dialog_save_file_selected"]
+[connection signal="file_selected" from="UI/FileDialogOpen" to="UI" method="_on_file_dialog_open_file_selected"]
