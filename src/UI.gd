@@ -3,6 +3,7 @@ extends Control
 func save(path):
 	var file = FileAccess.open(path,FileAccess.WRITE)	
 	file.store_string($VBoxContainer/TextEdit.text)
+	file.close()
 
 func download(path, file_name):
 	print("Downloading: " + file_name)
@@ -12,6 +13,7 @@ func open(path):
 	$VBoxContainer/HBoxContainer/LabelPath.text = path
 	var file = FileAccess.open(path, FileAccess.READ)
 	$VBoxContainer/TextEdit.text = file.get_as_text()
+	file.close()
 
 func download_text(text: String, filename: String = "download.txt"):
 #	text = text.replace("\n", "%0A")
