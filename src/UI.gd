@@ -1,6 +1,7 @@
 extends Control
 
 func save(path):
+	$VBoxContainer/HBoxContainer/LabelPath.text = path
 	var file = FileAccess.open(path,FileAccess.WRITE)	
 	file.store_string($VBoxContainer/TextEdit.text)
 	file.close()
