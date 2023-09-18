@@ -2,6 +2,7 @@ extends Control
 
 func save(path):
 	$VBoxContainer/HBoxContainer/LabelPath.text = path
+	$VBoxContainer/HBoxContainer/ButtonShellOpen.disabled = false
 	var file = FileAccess.open(path,FileAccess.WRITE)	
 	file.store_string($VBoxContainer/TextEdit.text)
 	file.close()
@@ -12,6 +13,7 @@ func download(path, file_name):
 
 func open(path):
 	$VBoxContainer/HBoxContainer/LabelPath.text = path
+	$VBoxContainer/HBoxContainer/ButtonShellOpen.disabled = false
 	var file = FileAccess.open(path, FileAccess.READ)
 	$VBoxContainer/TextEdit.text = file.get_as_text()
 	file.close()
@@ -32,6 +34,8 @@ func download_text(text: String, filename: String = "download.txt"):
 func _ready():
 	if OS.get_name() != "Web":
 		$VBoxContainer/HBoxContainer/ButtonDownload.visible = false
+	else:
+		$VBoxContainer/HBoxContainer/ButtonShellOpen.visible = false
 	get_viewport().files_dropped.connect(on_files_dropped)
 
 func on_files_dropped(files):
@@ -41,6 +45,7 @@ func on_files_dropped(files):
 
 func _on_button_new_pressed():
 	$VBoxContainer/HBoxContainer/LabelPath.text = "path"
+	$VBoxContainer/HBoxContainer/ButtonShellOpen.disabled = true
 	$VBoxContainer/TextEdit.clear()
 
 
@@ -63,3 +68,8 @@ func _on_file_dialog_open_file_selected(path):
 
 func _on_file_dialog_download_file_selected(path):
 	download(path, $FileDialogSave.current_file)
+
+
+func _on_button_shell_open_pressed():
+	var error = OS.shell_open($VBoxContainer/HBoxContainer/LabelPath.text)
+	print(error)

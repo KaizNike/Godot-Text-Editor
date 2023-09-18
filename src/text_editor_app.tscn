@@ -41,19 +41,29 @@ vertical_alignment = 1
 
 [node name="ButtonNew" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Warning! Clears document."
 text = "New"
 
 [node name="ButtonSave" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Saves document to disk, or on internet, to your Godot userdata - not permanent."
 text = "Save"
 
 [node name="ButtonDownload" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Downloads the file to your computer from the website it's hosted on. Can be cantankerous. Does not respect file type - downloads a text file."
 text = "Download"
 
 [node name="ButtonOpen" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Replaces current file with new one."
 text = "Open"
+
+[node name="ButtonShellOpen" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Will open the file from the file on the right with the operating system (like Windows or Mac) prefered way. Disabled until there is a default path."
+disabled = true
+text = "Shell Open"
 
 [node name="LabelPath" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -97,6 +107,7 @@ texture = SubResource("GradientTexture1D_b7jc8")
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonSave" to="UI" method="_on_button_save_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonDownload" to="UI" method="_on_button_download_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonOpen" to="UI" method="_on_button_open_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ButtonShellOpen" to="UI" method="_on_button_shell_open_pressed"]
 [connection signal="file_selected" from="UI/FileDialogSave" to="UI" method="_on_file_dialog_save_file_selected"]
 [connection signal="file_selected" from="UI/FileDialogDownload" to="UI" method="_on_file_dialog_download_file_selected"]
 [connection signal="file_selected" from="UI/FileDialogOpen" to="UI" method="_on_file_dialog_open_file_selected"]
