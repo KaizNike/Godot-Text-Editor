@@ -65,15 +65,19 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="FileDialogSave" type="FileDialog" parent="UI"]
+size = Vector2i(452, 300)
+min_size = Vector2i(200, 300)
 access = 2
 
 [node name="FileDialogDownload" type="FileDialog" parent="UI"]
-size = Vector2i(312, 157)
+size = Vector2i(452, 300)
+min_size = Vector2i(200, 300)
 access = 2
 
 [node name="FileDialogOpen" type="FileDialog" parent="UI"]
 title = "Open a File"
-size = Vector2i(312, 157)
+size = Vector2i(335, 300)
+min_size = Vector2i(200, 300)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
